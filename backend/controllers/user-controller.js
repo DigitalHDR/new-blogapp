@@ -1,5 +1,6 @@
 //backend/controller/user-controller.js
 import User from '../model/User'
+import bcrypt from 'bcryptjs'
 
 export const getAllUser = async (req, res, next) => {
   let users
@@ -35,10 +36,12 @@ export const signup = async (req, res, next) => {
     })
   }
 
+  const hashedPassword = bcrypt.hashSync(password)
+
   const user = new User({
     name,
     email,
-    password
+    password: hashedPassword
   })
   try {
     await user.save()
