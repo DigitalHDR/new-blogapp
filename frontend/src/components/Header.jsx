@@ -5,6 +5,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 export const Header = () => {
   return (
     <AppBar
+      position="sticky"
       sx={{
         background: '#6495ed'
       }}
