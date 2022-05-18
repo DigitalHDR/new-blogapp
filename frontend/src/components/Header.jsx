@@ -41,34 +41,41 @@ export const Header = () => {
         )}
 
         <Box display="flex" marginLeft="auto">
-          <Button
-            LinkComponent={Link}
-            to="/auth"
-            variant="contained"
-            sx={{ margin: 1, borderRadius: 10 }}
-            color="secondary"
-          >
-            Login
-          </Button>
-          <Button
-            LinkComponent={Link}
-            to="/auth"
-            variant="contained"
-            sx={{ margin: 1, borderRadius: 10 }}
-            color="secondary"
-          >
-            Signup
-          </Button>
 
-          <Button
-            LinkComponent={Link}
-            to="/auth"
-            variant="contained"
-            sx={{ margin: 1, borderRadius: 10 }}
-            color="secondary"
-          >
-            Logout
-          </Button>
+          {!isLoggedIn && (
+            <>
+              <Button
+                LinkComponent={Link}
+                to="/auth"
+                variant="contained"
+                sx={{ margin: 1, borderRadius: 10 }}
+                color="secondary"
+              >
+                Login
+              </Button>
+              <Button
+                LinkComponent={Link}
+                to="/auth"
+                variant="contained"
+                sx={{ margin: 1, borderRadius: 10 }}
+                color="secondary"
+              >
+                Signup
+              </Button>
+            </>
+          )}
+          
+          {isLoggedIn && (
+            <Button
+              LinkComponent={Link}
+              to="/auth"
+              variant="contained"
+              sx={{ margin: 1, borderRadius: 10 }}
+              color="secondary"
+            >
+              Logout
+            </Button>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
