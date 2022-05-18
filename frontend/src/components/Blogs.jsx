@@ -28,7 +28,8 @@ export const Blogs = () => {
             title={blog.title}
             description={blog.description}
             imageURL={blog.imageURL}
-            userName={blog.name}
+            userName={blog.user.name}
+            // userName={blog.name}
           />
         ))}
     </div>

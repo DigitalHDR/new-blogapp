@@ -38,6 +38,7 @@ export const Header = () => {
             >
               <Tab LinkComponent={Link} to="/blogs" label="All Blogs"></Tab>
               <Tab LinkComponent={Link} to="/myBlogs" label="My Blogs"></Tab>
+              <Tab LinkComponent={Link} to="/blogs/add" label="Add Blogs"></Tab>
             </Tabs>
           </Box>
         )}
