@@ -19,9 +19,10 @@ export const Auth = () => {
     }))
   }
 
-  const sendRequest = async () => {
+  const sendRequest = async (type = 'login') => {
     const res = await axios
-      .post('http://localhost:5000/api/user/login', {
+      .post(`http://localhost:5000/api/user/${type}`, {
+        name: inputs.name,
         email: inputs.email,
         password: inputs.password
       })
@@ -34,7 +35,11 @@ export const Auth = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log(inputs)
-    sendRequest()
+    if (isSignup) {
+      sendRequest('signup').then(data => console.log(data))
+    } else {
+      sendRequest().then(data => console.log(data))
+    }
   }
 
   return (
