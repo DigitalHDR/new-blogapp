@@ -88,9 +88,11 @@ export const deleteBlog = async (req, res, next) => {
   const id = req.params.id
   let blog
   try {
-    blog = await Blog.findByIdAndDelete(id)
+    blog = await Blog.findByIdAndRemove(id).populate('user')
+    await blog.user.blogs.pull(blog)
+    await blog.user.save()
   } catch (err) {
-    return console.log(err)
+    console.log(err)
   }
   if (!blog) {
     return res.status(500).json({ message: 'Nenhum blog encontrado' })
