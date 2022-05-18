@@ -6,7 +6,7 @@ import User from '../model/User'
 export const getAllBlogs = async (req, res, next) => {
   let blogs
   try {
-    blogs = await Blog.find()
+    blogs = await Blog.find().populate('user')
   } catch (err) {
     return console.log(err)
   }
@@ -40,7 +40,7 @@ export const addBlog = async (req, res, next) => {
   try {
     const session = await mongoose.startSession()
     session.startTransaction()
-    await blog.save({session})
+    await blog.save({ session })
     // await blog.save()  foi alterado
     existingUser.blogs.push(blog)
     await existingUser.save({ session })
@@ -95,7 +95,9 @@ export const deleteBlog = async (req, res, next) => {
     console.log(err)
   }
   if (!blog) {
-    return res.status(500).json({ message: 'Nenhum blog encontrado com esse id' })
+    return res
+      .status(500)
+      .json({ message: 'Nenhum blog encontrado com esse id' })
   }
   return res.status(200).json({ message: 'Blog Deletado com sucesso' })
 }
@@ -111,5 +113,5 @@ export const getByUserId = async (req, res, next) => {
   if (!userBlogs) {
     return res.status(404).json({ message: 'Nenhum blog encontrado' })
   }
-  return res.status(200).json({blogs: userBlogs})
+  return res.status(200).json({ blogs: userBlogs })
 }

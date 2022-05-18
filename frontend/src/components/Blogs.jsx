@@ -23,9 +23,13 @@ export const Blogs = () => {
     <div>
       {blogs &&
         blogs.map((blog, index) => (
-          <div key={index}>
-            <Blog />
-          </div>
+          <Blog
+            key={index}
+            title={blog.title}
+            description={blog.description}
+            imageURL={blog.imageURL}
+            userName={blog.name}
+          />
         ))}
     </div>
   )
