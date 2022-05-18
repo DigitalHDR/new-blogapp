@@ -1,8 +1,18 @@
 //frontend/src/components/header.jsx
-import React from 'react'
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import {
+  AppBar,
+  Box,
+  Button,
+  Toolbar,
+  Tab,
+  Tabs,
+  Typography
+} from '@mui/material'
 
 export const Header = () => {
+  const [value, setValue] = useState()
+
   return (
     <AppBar
       position="sticky"
@@ -12,6 +22,13 @@ export const Header = () => {
     >
       <Toolbar>
         <Typography variant="h4">BlogsApp</Typography>
+        <Box display="flex">
+          <Tabs value={value} onChange={(e, val) => setValue(val)}>
+            <Tab label="All Blogs"></Tab>
+            <Tab label="My Blogs"></Tab>
+          </Tabs>
+        </Box>
+
         <Box display="flex" marginLeft="auto">
           <Button
             variant="contained"
