@@ -18,9 +18,14 @@ export const Auth = () => {
     }))
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(inputs)
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           maxWidth={400}
           display="flex"
@@ -62,6 +67,7 @@ export const Auth = () => {
             margin="normal"
           />
           <Button
+            type="submit"
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
             color="warning"
