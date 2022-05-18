@@ -11,9 +11,11 @@ import {
   Typography
 } from '@mui/material'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { authActions } from '../store'
 
 export const Header = () => {
+  const dispath = useDispatch()
   const [value, setValue] = useState()
   const isLoggedIn = useSelector(state => state.isLoggedIn)
 
@@ -41,7 +43,6 @@ export const Header = () => {
         )}
 
         <Box display="flex" marginLeft="auto">
-
           {!isLoggedIn && (
             <>
               <Button
@@ -64,9 +65,10 @@ export const Header = () => {
               </Button>
             </>
           )}
-          
+
           {isLoggedIn && (
             <Button
+              onClick={() => dispath(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
               variant="contained"
