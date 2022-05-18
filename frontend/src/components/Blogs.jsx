@@ -1,6 +1,7 @@
 //frontend/src/components/blogs.jsx
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Blog } from './Blog'
 
 export const Blogs = () => {
   const [blogs, setBlogs] = useState()
@@ -18,5 +19,9 @@ export const Blogs = () => {
   }, [])
   console.log(blogs)
 
-  return <div>Blogs</div>
+  return (
+    <div>
+      <Blog />
+    </div>
+  )
 }
