@@ -4,8 +4,10 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { authActions } from '../store'
+import { useNavigate } from 'react-router-dom'
 
 export const Auth = () => {
+  const navigate = useNavigate()
   const dispath = useDispatch()
   const [inputs, setInputs] = useState({
     name: '',
@@ -41,10 +43,12 @@ export const Auth = () => {
     if (isSignup) {
       sendRequest('signup')
         .then(() => dispath(authActions.login()))
+        .then(() => navigate('/blogs'))
         .then(data => console.log(data))
     } else {
       sendRequest()
         .then(() => dispath(authActions.login()))
+        .then(() => navigate('/blogs'))
         .then(data => console.log(data))
     }
   }
