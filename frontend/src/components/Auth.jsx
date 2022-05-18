@@ -3,7 +3,20 @@ import React, { useState } from 'react'
 import { Box, Button, TextField, Typography } from '@mui/material'
 
 export const Auth = () => {
+  const [inputs, setInputs] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
   const [isSignup, setIsSignup] = useState(false)
+
+  const handleChange = e => {
+    setInputs(prevState => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
+  }
 
   return (
     <div>
@@ -23,9 +36,31 @@ export const Auth = () => {
           <Typography variant="h2" padding={3} textAlign="center">
             {isSignup ? 'Signup' : 'Login'}
           </Typography>
-          {isSignup && <TextField placeholder="Name" margin="normal" />}
-          <TextField type={'email'} placeholder="Email" margin="normal" />
-          <TextField type={'password'} placeholder="Password" margin="normal" />
+          {isSignup && (
+            <TextField
+              name="name"
+              onChange={handleChange}
+              value={inputs.name}
+              placeholder="Name"
+              margin="normal"
+            />
+          )}
+          <TextField
+            name="email"
+            onChange={handleChange}
+            value={inputs.email}
+            type={'email'}
+            placeholder="Email"
+            margin="normal"
+          />
+          <TextField
+            name="password"
+            onChange={handleChange}
+            value={inputs.password}
+            type={'password'}
+            placeholder="Password"
+            margin="normal"
+          />
           <Button
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
