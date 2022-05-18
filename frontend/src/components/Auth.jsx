@@ -2,8 +2,11 @@
 import React, { useState } from 'react'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { authActions } from '../store'
 
 export const Auth = () => {
+  const dispath = useDispatch()
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
@@ -36,9 +39,13 @@ export const Auth = () => {
     e.preventDefault()
     console.log(inputs)
     if (isSignup) {
-      sendRequest('signup').then(data => console.log(data))
+      sendRequest('signup')
+        .then(() => dispath(authActions.login()))
+        .then(data => console.log(data))
     } else {
-      sendRequest().then(data => console.log(data))
+      sendRequest()
+        .then(() => dispath(authActions.login()))
+        .then(data => console.log(data))
     }
   }
 
