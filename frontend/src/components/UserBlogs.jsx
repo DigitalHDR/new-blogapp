@@ -33,6 +33,7 @@ export const UserBlogs = () => {
         user.blogs.map((blog, index) => (
           <Blog
             key={index}
+            isUser={true}
             title={blog.title}
             description={blog.description}
             imageURL={blog.image}

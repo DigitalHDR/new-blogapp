@@ -2,14 +2,32 @@
 import React from 'react'
 import {
   Avatar,
+  Box,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
+  IconButton,
   Typography
 } from '@mui/material'
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { useNavigate } from 'react-router-dom'
 
-export const Blog = ({ title, description, imageURL, userName }) => {
+export const Blog = ({
+  title,
+  description,
+  imageURL,
+  userName,
+  isUser,
+  id
+}) => {
+  const navigate = useNavigate()
+
+  const handleEdit = e => {
+    navigate(`/myBlogs/${id}`)
+  }
+
   return (
     <div>
       <Card
@@ -24,6 +42,17 @@ export const Blog = ({ title, description, imageURL, userName }) => {
           }
         }}
       >
+        {isUser && (
+          <Box display={'flex'}>
+            <IconButton onClick={handleEdit} sx={{ marginLeft: 'auto' }}>
+              <ModeEditOutlineIcon />
+            </IconButton>
+            <IconButton onClick={handleEdit}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </Box>
+        )}
+
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
