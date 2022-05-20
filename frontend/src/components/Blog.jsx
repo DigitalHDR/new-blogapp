@@ -13,6 +13,7 @@ import {
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export const Blog = ({
   title,
@@ -26,6 +27,18 @@ export const Blog = ({
 
   const handleEdit = e => {
     navigate(`/myBlogs/${id}`)
+  }
+
+  const deleteRequest = async () => {
+    const res = await axios
+      .delete(`http://localhost:5000/api/blog/${id}`)
+      .catch(err => console.log(err))
+    const data = res.data
+    return data
+  }
+  const handleDelete = e => {
+    deleteRequest().then(data => console.log(data))
+    // navigate(`/myBlogs/${id}`)
   }
 
   return (
@@ -47,7 +60,7 @@ export const Blog = ({
             <IconButton onClick={handleEdit} sx={{ marginLeft: 'auto' }}>
               <ModeEditOutlineIcon />
             </IconButton>
-            <IconButton onClick={handleEdit}>
+            <IconButton onClick={handleDelete}>
               <DeleteForeverIcon />
             </IconButton>
           </Box>
