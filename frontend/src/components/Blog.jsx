@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardMedia,
   IconButton,
-  Typography
+  Typography,
 } from '@mui/material'
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -21,7 +21,7 @@ export const Blog = ({
   imageURL,
   userName,
   isUser,
-  id
+  id,
 }) => {
   const navigate = useNavigate()
 
@@ -52,21 +52,20 @@ export const Blog = ({
           padding: 2,
           boxShadow: '5px 5px 10px #ccc',
           ':hover': {
-            boxShadow: '10px 10px 20px #ccc'
-          }
+            boxShadow: '10px 10px 20px #ccc',
+          },
         }}
       >
         {isUser && (
           <Box display={'flex'}>
             <IconButton onClick={handleEdit} sx={{ marginLeft: 'auto' }}>
-              <ModeEditOutlineIcon />
+              <ModeEditOutlineIcon color='warning' />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteForeverIcon />
+              <DeleteForeverIcon color='error' />
             </IconButton>
           </Box>
         )}
-
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
@@ -83,6 +82,8 @@ export const Blog = ({
           alt="Paella dish"
         />
         <CardContent>
+        <hr />
+        <br />
           <Typography variant="body2" color="text.secondary">
             <b>{userName}</b> {': '} {description}
           </Typography>
