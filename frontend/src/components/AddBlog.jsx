@@ -3,20 +3,22 @@ import React, { useState } from 'react'
 import { Box, Button, InputLabel, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import useStyles  from './utils'
 
 const labelStyles = { mb: 1, mt: 2, fontSize: '24px', fontWeight: 'bold' }
 export const AddBlog = () => {
+  const classes = useStyles()
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
     title: '',
     description: '',
-    imageURL: ''
+    imageURL: '',
   })
 
   const handleChange = e => {
     setInputs(prevState => ({
       ...prevState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }))
   }
 
@@ -26,7 +28,7 @@ export const AddBlog = () => {
         title: inputs.title,
         description: inputs.description,
         image: inputs.imageURL,
-        user: localStorage.getItem('userId')
+        user: localStorage.getItem('userId'),
       })
       .catch(err => console.log(err))
     const data = await res.data
@@ -57,6 +59,7 @@ export const AddBlog = () => {
           width={'80%'}
         >
           <Typography
+            className={classes.font}
             fontWeight={'bold'}
             padding={3}
             color="grey"
@@ -65,24 +68,33 @@ export const AddBlog = () => {
           >
             Post your Blog
           </Typography>
-          <InputLabel sx={labelStyles}>Title</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            Title
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="title"
             onChange={handleChange}
             value={inputs.title}
             margin="normal"
             variant="outlined"
           />
-          <InputLabel sx={labelStyles}>Description</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            Description
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="description"
             onChange={handleChange}
             value={inputs.description}
             margin="normal"
             variant="outlined"
           />
-          <InputLabel sx={labelStyles}>ImageURL</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            ImageURL
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="imageURL"
             onChange={handleChange}
             value={inputs.image}

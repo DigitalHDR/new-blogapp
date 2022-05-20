@@ -7,7 +7,6 @@ import { Blogs } from './components/Blogs'
 import { UserBlogs } from './components/UserBlogs'
 import { BlogDetail } from './components/BlogDetail'
 import { AddBlog } from './components/AddBlog'
-
 import { useSelector } from 'react-redux'
 
 function App() {
