@@ -2,10 +2,11 @@
 import { Box, Button, InputLabel, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const labelStyles = { mb: 1, mt: 2, fontSize: '24px', fontWeight: 'bold' }
 export const BlogDetail = () => {
+  const navigate = useNavigate()
   const [blog, setBlog] = useState()
   const id = useParams().id
   console.log(id)
@@ -51,8 +52,8 @@ export const BlogDetail = () => {
       })
       .catch(err => console.log(err))
 
-      const data = await res.data
-      return data
+    const data = await res.data
+    return data
   }
 
   console.log(blog)
@@ -60,7 +61,9 @@ export const BlogDetail = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log(inputs)
-    sendRequest().then(data => console.log(data))
+    sendRequest()
+      .then(data => console.log(data))
+      .then(() => navigate('/myBlogs/'))
   }
 
   return (
