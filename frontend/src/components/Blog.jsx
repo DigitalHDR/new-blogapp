@@ -37,8 +37,9 @@ export const Blog = ({
     return data
   }
   const handleDelete = e => {
-    deleteRequest().then(data => console.log(data))
-    // navigate(`/myBlogs/${id}`)
+    deleteRequest()
+      // .then(() => navigate('/') NÃO SEI PORQUE TEM ESSE NO VIDEO, POIS VOLTA PRO INICIO
+      .then(() => navigate('/blogs'))
   }
 
   return (
