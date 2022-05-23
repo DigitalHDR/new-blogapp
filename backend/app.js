@@ -1,9 +1,10 @@
 //backend/app.js
 import express from 'express'
 import mongoose from 'mongoose'
-import blogRouter from './routes/blog-router'
-import router from './routes/user-routes'
+import blogRouter from './routes/blog-router.js'
+import router from './routes/user-routes.js'
 import cors from 'cors'
+import 'dotenv/config'
 
 const app = express()
 app.use(cors())
@@ -11,12 +12,14 @@ app.use(express.json())
 app.use('/api/user', router)
 app.use('/api/blog', blogRouter)
 
+const dbUrl = process.env.DB_URL
+const appUrl = process.env.APP_URL
+const port = process.env.PORT || 5000
+
 mongoose
-  .connect(
-    'mongodb+srv://admin:admin@cluster0.yt9ns.mongodb.net/Blog?retryWrites=true&w=majority'
-  )
-  .then(() => app.listen(5000))
+  .connect(dbUrl)
+  .then(() => app.listen(port))
   .then(() =>
-    console.log('conectado ao mongodb porta http://localhost:5000/api/user')
+    console.log(`conectado ao mongodb porta ${appUrl}`)
   )
   .catch(err => console.log(err))
