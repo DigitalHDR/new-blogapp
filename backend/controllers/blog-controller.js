@@ -1,7 +1,7 @@
 //backend/controllers/blog-controllers.js
-import Blog from '../model/Blog'
+import Blog from '../model/Blog.js'
 import mongoose from 'mongoose'
-import User from '../model/User'
+import User from '../model/User.js'
 
 export const getAllBlogs = async (req, res, next) => {
   let blogs
