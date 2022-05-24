@@ -31,14 +31,13 @@ export const Blog = ({
 
   const deleteRequest = async () => {
     const res = await axios
-      .delete(`http://localhost:5000/api/blog/${id}`)
+      .delete(`https://hdr-backend.herokuapp.com/api/blog/${id}`)
       .catch(err => console.log(err))
     const data = res.data
     return data
   }
   const handleDelete = e => {
     deleteRequest()
-      // .then(() => navigate('/') NÃO SEI PORQUE TEM ESSE NO VIDEO, POIS VOLTA PRO INICIO
       .then(() => navigate('/blogs'))
   }
 
@@ -59,10 +58,10 @@ export const Blog = ({
         {isUser && (
           <Box display={'flex'}>
             <IconButton onClick={handleEdit} sx={{ marginLeft: 'auto' }}>
-              <ModeEditOutlineIcon color='warning' />
+              <ModeEditOutlineIcon color="warning" />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteForeverIcon color='error' />
+              <DeleteForeverIcon color="error" />
             </IconButton>
           </Box>
         )}
@@ -82,8 +81,8 @@ export const Blog = ({
           alt="Paella dish"
         />
         <CardContent>
-        <hr />
-        <br />
+          <hr />
+          <br />
           <Typography variant="body2" color="text.secondary">
             <b>{userName}</b> {': '} {description}
           </Typography>

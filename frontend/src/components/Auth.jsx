@@ -12,7 +12,7 @@ export const Auth = () => {
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
   })
 
   const [isSignup, setIsSignup] = useState(false)
@@ -20,16 +20,16 @@ export const Auth = () => {
   const handleChange = e => {
     setInputs(prevState => ({
       ...prevState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }))
   }
 
   const sendRequest = async (type = 'login') => {
     const res = await axios
-      .post(`http://localhost:5000/api/user/${type}`, {
+      .post(`https://hdr-backend.herokuapp.com/api/user/${type}`, {
         name: inputs.name,
         email: inputs.email,
-        password: inputs.password
+        password: inputs.password,
       })
       .catch(err => console.log(err))
 

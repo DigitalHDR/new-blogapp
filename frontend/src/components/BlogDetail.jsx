@@ -14,19 +14,19 @@ export const BlogDetail = () => {
   const [inputs, setInputs] = useState({
     title: '',
     description: '',
-    imageURL: ''
+    imageURL: '',
   })
 
   const handleChange = e => {
     setInputs(prevState => ({
       ...prevState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }))
   }
 
   const fetchDetails = async () => {
     const res = await axios
-      .get(`http://localhost:5000/api/blog/${id}`)
+      .get(`https://hdr-backend.herokuapp.com/api/blog/${id}`)
       .catch(err => console.log(err))
     const data = await res.data
     return data
@@ -39,16 +39,16 @@ export const BlogDetail = () => {
         title: data.blog.title,
         description: data.blog.description,
         // imageURL: data.blog.image  NAO SEI PORQUE MAIS SÓ FUNCIONOU COM O DE BAIXO
-        image: data.blog.image
+        image: data.blog.image,
       })
     })
   }, [id])
 
   const sendRequest = async () => {
     const res = await axios
-      .put(`http://localhost:5000/api/blog/update/${id}`, {
+      .put(`https://hdr-backend.herokuapp.com/api/blog/update/${id}`, {
         title: inputs.title,
-        description: inputs.description
+        description: inputs.description,
       })
       .catch(err => console.log(err))
 
@@ -107,14 +107,6 @@ export const BlogDetail = () => {
               margin="normal"
               variant="outlined"
             />
-            {/* <InputLabel sx={labelStyles}>ImageURL</InputLabel>
-            <TextField
-              name="imageURL"
-              onChange={handleChange}
-              value={inputs.image}
-              margin="normal"
-              variant="outlined"
-            /> */}
             <Button
               sx={{ mt: 2, borderRadius: 4 }}
               variant="contained"
